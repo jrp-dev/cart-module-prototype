@@ -15,6 +15,9 @@ Install srn-cart-prototype with npm
     
 ## Documentation
 
+#### data
+Array of objects from your cart
+
 #### keyProp
 Property of object with unique ID for mapping
 
