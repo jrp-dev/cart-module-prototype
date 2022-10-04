@@ -1,7 +1,7 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import CartList from "./views/CartList";
 
-const CartComponent = (): ReactElement => {
+const CartComponent = (): JSX.Element => {
   return (
     <CartList />
   );
