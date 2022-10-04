@@ -1,19 +1,18 @@
-import React, {Fragment} from "react";
-import Button from "../components/Button";
-import Text from "../components/Text";
-import { listTypes } from "../types/listTypes";
+import { Fragment } from "react";
+import { listTypes } from "../../types/listTypes";
+import Button from "./Button";
+import Text from "./Text";
 
-export const CartList = (props: listTypes) => {
-
+export default function List(data: listTypes) {
     return (
         <>
             <ul>
-                {props?.data?.map((item, index) => (
-                    <li key={item[props.keyProp] ? item[props.keyProp] : index }>
+                {data?.data?.map((item, index) => (
+                    <li key={item[data.keyProp] ? item[data.keyProp] : index }>
                         <div>
-                            <p>{item[props.titleProp] ?  item[props.titleProp] : ''}</p>
+                            <p>{item[data.titleProp] ?  item[data.titleProp] : ''}</p>
                             {
-                                props.rightContent?.map((content, i) => (
+                                data.rightContent?.map((content, i) => (
                                     <Fragment key={i}>
                                         {
                                             content.type === 'button' ?
@@ -33,5 +32,3 @@ export const CartList = (props: listTypes) => {
         </>
     )
 }
-
-export default CartList
