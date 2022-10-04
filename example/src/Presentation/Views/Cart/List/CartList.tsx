@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import useViewModel from './ViewModel'
 import { getCartAsync } from '../../../../features/cart/cartSlice';
 import Button from '../../../components/Button';
-import List from '../../../components/List';
 import CartComponent from 'srn-cart-prototype';
 
 export default function CartList() {
