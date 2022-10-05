@@ -46,8 +46,9 @@ Function that triggers on click.
 
 ## Usage/Examples
 
+### JS
+
 ```javascript
-...
 import { useState } from 'react';
 import CartComponent from 'srn-cart-prototype';
 
@@ -59,7 +60,7 @@ function App() {
     {id: 3, name: 'Hotdog Sandwich', quantity: 1, price: 300.00}
   ]);
 
-  const increment = (item: cartItemsState) => {
+  const increment = (item) => {
     let newArr = cart.map(cart_item => {
       if (cart_item.id === item.id) {
         return {...cart_item, quantity: cart_item.quantity += 1};
@@ -69,7 +70,7 @@ function App() {
     setCart(newArr);
   }
 
-  const decrement = (item: cartItemsState) => {
+  const decrement = (item) => {
     let newArr = cart.map(cart_item => {
       if (cart_item.id === item.id) {
         return {...cart_item, quantity: cart_item.quantity -= 1};
@@ -79,8 +80,9 @@ function App() {
     setCart(newArr);
   }
 
-  const remove = (item: cartItemsState) => {
-    setCart([]);
+  const remove = (item) => {
+    let newArr = cart.filter(cart_item => cart_item.id !== item.id);
+    setCart(newArr);
   }
 
   return (
@@ -91,7 +93,7 @@ function App() {
             titleProp="name"
             rightContent={
                 [
-                    {type: 'staticText', title: '₱ ', onclickFunc: () => null},
+                    {type: 'staticText', title: '$', onclickFunc: () => null},
                     {type: 'dynamicText', title: 'price', onclickFunc: () => null},
                     {type: 'button', title: '-', onclickFunc: decrement},
                     {type: 'dynamicText', title: 'quantity', onclickFunc: () => null},
@@ -107,3 +109,72 @@ function App() {
 export default App;
 ```
 
+### TypeScript
+
+```javascript
+import { useState } from 'react';
+import CartComponent from 'srn-cart-prototype';
+
+interface ICart {
+  id: number;
+  name: string;
+  quantity: number;
+  price: number;
+}
+
+function App() {
+
+  const [cart, setCart] = useState([
+    {id: 1, name: 'Chicken Sandwich', quantity: 1, price: 120.00},
+    {id: 2, name: 'Ham Sandwich', quantity: 1, price: 200.00},
+    {id: 3, name: 'Hotdog Sandwich', quantity: 1, price: 300.00}
+  ]);
+
+  const increment = (item: ICart) => {
+    let newArr = cart.map(cart_item => {
+      if (cart_item.id === item.id) {
+        return {...cart_item, quantity: cart_item.quantity += 1};
+      }    
+      return cart_item;
+    })
+    setCart(newArr);
+  }
+
+  const decrement = (item: ICart) => {
+    let newArr = cart.map(cart_item => {
+      if (cart_item.id === item.id) {
+        return {...cart_item, quantity: cart_item.quantity -= 1};
+      }    
+      return cart_item;
+    })
+    setCart(newArr);
+  }
+
+  const remove = (item: ICart) => {
+    let newArr = cart.filter(cart_item => cart_item.id !== item.id);
+    setCart(newArr);
+  }
+
+  return (
+    <div className="App">
+        <CartComponent
+            data={cart}
+            keyProp="id"
+            titleProp="name"
+            rightContent={
+                [
+                    {type: 'staticText', title: '$', onclickFunc: () => null},
+                    {type: 'dynamicText', title: 'price', onclickFunc: () => null},
+                    {type: 'button', title: '-', onclickFunc: decrement},
+                    {type: 'dynamicText', title: 'quantity', onclickFunc: () => null},
+                    {type: 'button', title: '+', onclickFunc: increment},
+                    {type: 'button', title: 'x', onclickFunc: remove},
+                ]
+            }
+        />
+    </div>
+  );
+}
+
+export default App;
+```
