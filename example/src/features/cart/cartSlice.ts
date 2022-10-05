@@ -57,6 +57,10 @@ export const cartSlice = createSlice({
     remove: (state, action) => {
       state.value = state.value.filter(cart_item => cart_item.id !== action.payload.id)
       state.total = getTotal(state.value)
+    },
+    clear: (state) => {
+      state.value = []
+      state.total = 0
     }
   },
   // The `extraReducers` field lets the slice handle actions defined elsewhere,
@@ -76,7 +80,7 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { increment, decrement, remove } = cartSlice.actions;
+export const { increment, decrement, remove, clear } = cartSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

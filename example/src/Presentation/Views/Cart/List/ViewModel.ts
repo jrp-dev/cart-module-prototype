@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
-import { decrement, increment, remove, selectCart, cartTotal } from '../../../../features/cart/cartSlice';
+import { decrement, increment, remove, selectCart, clear, cartTotal } from '../../../../features/cart/cartSlice';
 import { cartItemsState } from '../../../../types/cartTypes';
 
 export default function CartListViewModel() {
@@ -21,12 +21,17 @@ export default function CartListViewModel() {
         dispatch(remove(item))
     }
 
+    const clearCart = () => {
+        dispatch(clear())
+    }
+
     return {
         cartItems,
         dispatch,
         decrementCart,
         incrementCart,
         removeCart,
+        clearCart,
         total
     }
 }

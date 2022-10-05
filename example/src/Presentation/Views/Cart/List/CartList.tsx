@@ -5,7 +5,7 @@ import Button from '../../../components/Button';
 import CartComponent from 'srn-cart-prototype';
 
 export default function CartList() {
-    const { cartItems, dispatch, incrementCart, decrementCart, removeCart, total } = useViewModel();
+    const { cartItems, dispatch, incrementCart, decrementCart, removeCart, clearCart, total } = useViewModel();
 
     useEffect(() => {
         dispatch(getCartAsync())
@@ -13,7 +13,7 @@ export default function CartList() {
 
     return (
         <div>
-            <h4>Cart Items</h4>
+            <h3>Cart Items</h3>
             <CartComponent
                 data={cartItems}
                 keyProp="id"
@@ -30,6 +30,7 @@ export default function CartList() {
             />
             <p><strong>Total:</strong> {total}</p>
             <Button title="Reload Cart" onClickFunc={() => dispatch(getCartAsync())} param={null}/>
+            <Button title="Clear All" onClickFunc={() => clearCart()} param={null}/>
         </div>
     )
 }
