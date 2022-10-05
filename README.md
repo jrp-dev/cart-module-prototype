@@ -13,10 +13,12 @@ Install srn-cart-prototype with npm
   npm install srn-cart-prototype
 ```
     
-## Documentation
+## Screenshots
 
-#### data
-Array of objects from your cart
+![App Screenshot](https://prnt.sc/2P8bGsOoiYK2)
+
+
+## Documentation
 
 #### keyProp
 Property of object with unique ID for mapping
