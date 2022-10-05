@@ -104,3 +104,10 @@ ul li div button:last-child {
   margin: 100px auto;
   border: 1px solid #c0c0c0
 }
+
+li > div > p + span {
+  padding-right: 0;
+}
+li > div > p + span + span {
+  padding-left: 0;
+}

@@ -20,6 +20,7 @@ export default function CartList() {
                 titleProp="name"
                 rightContent={
                     [
+                        {type: 'staticText', title: '₱ ', onclickFunc: () => null},
                         {type: 'dynamicText', title: 'price', onclickFunc: () => null},
                         {type: 'button', title: '-', onclickFunc: decrementCart},
                         {type: 'dynamicText', title: 'quantity', onclickFunc: () => null},
@@ -28,7 +29,7 @@ export default function CartList() {
                     ]
                 }
             />
-            <p><strong>Total:</strong> {total}</p>
+            <p><strong>Total:</strong> ₱ {total}</p>
             <Button title="Reload Cart" onClickFunc={() => dispatch(getCartAsync())} param={null}/>
             <Button title="Clear All" onClickFunc={() => clearCart()} param={null}/>
         </div>
