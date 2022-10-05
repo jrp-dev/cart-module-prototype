@@ -15,7 +15,7 @@ Install srn-cart-prototype with npm
     
 ## Screenshots
 
-![App Screenshot](https://prnt.sc/2P8bGsOoiYK2)
+![App Screenshot](https://i.postimg.cc/JzC4QCgR/Screenshot-139.png)
 
 
 ## Documentation
@@ -47,23 +47,63 @@ Function that triggers on click.
 ## Usage/Examples
 
 ```javascript
-import CartComponent from 'srn-cart-prototype'
+...
+import { useState } from 'react';
+import CartComponent from 'srn-cart-prototype';
 
 function App() {
-  return <CartComponent
-        data={cart_items}
-        keyProp="id"
-        titleProp="name"
-        rightContent={
-            [
-                {type: 'dynamicText', title: 'price', onclickFunc: () => null},
-                {type: 'button', title: '-', onclickFunc: decrementCart},
-                {type: 'dynamicText', title: 'quantity', onclickFunc: () => null},
-                {type: 'button', title: '+', onclickFunc: incrementCart},
-                {type: 'button', title: 'x', onclickFunc: removeCart},
-            ]
-        }
-    />
+
+  const [cart, setCart] = useState([
+    {id: 1, name: 'Chicken Sandwich', quantity: 1, price: 120.00},
+    {id: 2, name: 'Ham Sandwich', quantity: 1, price: 200.00},
+    {id: 3, name: 'Hotdog Sandwich', quantity: 1, price: 300.00}
+  ]);
+
+  const increment = (item: cartItemsState) => {
+    let newArr = cart.map(cart_item => {
+      if (cart_item.id === item.id) {
+        return {...cart_item, quantity: cart_item.quantity += 1};
+      }    
+      return cart_item;
+    })
+    setCart(newArr);
+  }
+
+  const decrement = (item: cartItemsState) => {
+    let newArr = cart.map(cart_item => {
+      if (cart_item.id === item.id) {
+        return {...cart_item, quantity: cart_item.quantity -= 1};
+      }    
+      return cart_item;
+    })
+    setCart(newArr);
+  }
+
+  const remove = (item: cartItemsState) => {
+    setCart([]);
+  }
+
+  return (
+    <div className="App">
+        <CartComponent
+            data={cart}
+            keyProp="id"
+            titleProp="name"
+            rightContent={
+                [
+                    {type: 'staticText', title: '₱ ', onclickFunc: () => null},
+                    {type: 'dynamicText', title: 'price', onclickFunc: () => null},
+                    {type: 'button', title: '-', onclickFunc: decrement},
+                    {type: 'dynamicText', title: 'quantity', onclickFunc: () => null},
+                    {type: 'button', title: '+', onclickFunc: increment},
+                    {type: 'button', title: 'x', onclickFunc: remove},
+                ]
+            }
+        />
+    </div>
+  );
 }
+
+export default App;
 ```
 
