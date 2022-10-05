@@ -90,7 +90,7 @@ ul li div button:last-child {
   border-color: darkred
 }
 
-div > button {
+.App > div > button {
   margin-right: 10px;
   width: 200px;
   height: 40px;
