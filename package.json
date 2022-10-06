@@ -1,6 +1,6 @@
 {
   "name": "srn-cart-prototype",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "main": "./lib/cjs/index.js",
   "scripts": {
