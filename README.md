@@ -15,7 +15,7 @@ Install srn-cart-prototype with npm
     
 ## Screenshots
 
-![App Screenshot](https://i.postimg.cc/JzC4QCgR/Screenshot-139.png)
+![App Screenshot](https://i.ibb.co/kHQJG55/Screenshot-140.png)
 
 
 ## Documentation
