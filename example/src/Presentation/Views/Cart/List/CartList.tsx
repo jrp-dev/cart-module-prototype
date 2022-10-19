@@ -5,7 +5,7 @@ import Button from '../../../components/Button';
 import CartComponent from 'srn-cart-prototype';
 
 export default function CartList() {
-    const { useCartItemsSelector, dispatch, incrementCart, decrementCart, removeCart, clearCart, useGetTotal } = useViewModel();
+    const { useCartItemsSelector, dispatch, incrementCart, decrementCart, removeCart, clearCart, useGetTotal, updateCart } = useViewModel();
 
     useEffect(() => {
         dispatch(getCartAsync())
@@ -20,14 +20,15 @@ export default function CartList() {
                 titleProp="name"
                 rightContent={
                     [
-                        {type: 'staticText', title: '₱ ', onclickFunc: () => null},
                         {type: 'dynamicText', title: 'price', onclickFunc: () => null},
                         {type: 'button', title: '-', onclickFunc: decrementCart},
                         {type: 'dynamicText', title: 'quantity', onclickFunc: () => null},
                         {type: 'button', title: '+', onclickFunc: incrementCart},
-                        {type: 'button', title: 'x', onclickFunc: removeCart},
+                        // {type: 'button', title: 'x', onclickFunc: removeCart},
                     ]
                 }
+                showRemoveButton={true}
+                onRemove={updateCart}
             />
             <p><strong>Total:</strong> ₱ {useGetTotal}</p>
             <Button title="Reload Cart" onClickFunc={() => dispatch(getCartAsync())} param={null}/>

@@ -15,7 +15,7 @@ Install srn-cart-prototype with npm
     
 ## Screenshots
 
-![App Screenshot](https://i.ibb.co/kHQJG55/Screenshot-140.png)
+![App Screenshot](https://i.ibb.co/bQH7DRB/Screenshot-141.png)
 
 
 ## Documentation
@@ -30,7 +30,7 @@ Property of object to display text each line
 Array. Contents in the right side of each cart items.
 
 ```javascript
-    [{type: 'button', title: '-', onclickFunc: decrementCart}]
+[{type: 'button', title: '-', onclickFunc: decrementCart}]
 ```
 ##### type
 dynamicText | staticText | button - Specify the type of element you want to display.
@@ -41,8 +41,11 @@ Displays text inside the element. If the type is dynamicText, this will display 
 ##### onclickFunc
 Function that triggers on click.
 
+#### showRemoveButton (optional)
+Boolean. Show/hide default remove item button.
 
-
+#### onRemove (optional)
+Function when clicking the default remove button.
 
 ## Usage/Examples
 
@@ -80,9 +83,8 @@ function App() {
     setCart(newArr);
   }
 
-  const remove = (item) => {
-    let newArr = cart.filter(cart_item => cart_item.id !== item.id);
-    setCart(newArr);
+  const update = (items) => {
+    setCart(items);
   }
 
   return (
@@ -97,10 +99,11 @@ function App() {
                     {type: 'dynamicText', title: 'price', onclickFunc: () => null},
                     {type: 'button', title: '-', onclickFunc: decrement},
                     {type: 'dynamicText', title: 'quantity', onclickFunc: () => null},
-                    {type: 'button', title: '+', onclickFunc: increment},
-                    {type: 'button', title: 'x', onclickFunc: remove},
+                    {type: 'button', title: '+', onclickFunc: increment}
                 ]
             }
+            showRemoveButton={true}
+            onRemove={update}
         />
     </div>
   );
@@ -150,9 +153,8 @@ function App() {
     setCart(newArr);
   }
 
-  const remove = (item: ICart) => {
-    let newArr = cart.filter(cart_item => cart_item.id !== item.id);
-    setCart(newArr);
+  const update = (items: ICart[]) => {
+    setCart(items);
   }
 
   return (
@@ -167,10 +169,11 @@ function App() {
                     {type: 'dynamicText', title: 'price', onclickFunc: () => null},
                     {type: 'button', title: '-', onclickFunc: decrement},
                     {type: 'dynamicText', title: 'quantity', onclickFunc: () => null},
-                    {type: 'button', title: '+', onclickFunc: increment},
-                    {type: 'button', title: 'x', onclickFunc: remove},
+                    {type: 'button', title: '+', onclickFunc: increment}
                 ]
             }
+            showRemoveButton={true}
+            onRemove={update}
         />
     </div>
   );

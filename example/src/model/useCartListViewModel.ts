@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { decrement, increment, remove, selectCart, clear, cartTotal } from '../features/cart/cartSlice';
+import { decrement, increment, remove, selectCart, clear, cartTotal, update } from '../features/cart/cartSlice';
 import { cartItemsState } from '../types/cartTypes';
 
 export default function useCartListViewModel() {
@@ -24,6 +24,10 @@ export default function useCartListViewModel() {
         dispatch(clear())
     }
 
+    const updateCart = (data: cartItemsState[]) => {
+        dispatch(update(data))
+    }
+
     return {
         useCartItemsSelector,
         useGetTotal,
@@ -31,6 +35,7 @@ export default function useCartListViewModel() {
         decrementCart,
         incrementCart,
         removeCart,
-        clearCart
+        clearCart,
+        updateCart
     }
 }

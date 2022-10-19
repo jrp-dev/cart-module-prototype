@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Text(data: {data: string}) {
     return (
-        <span>{data.data}</span>
+        <span className='srn-miniapp-cart-text'>{data.data}</span>
     )
 }

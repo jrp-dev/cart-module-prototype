@@ -8,4 +8,6 @@ export interface listTypes {
     }>;
     titleProp: string;
     keyProp: string;
+    onRemove?: (prop: any) => void;
+    showRemoveButton?: boolean;
 }
