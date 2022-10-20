@@ -1,39 +1,35 @@
-export interface cartItemsState {
+export interface ICartItemsState {
     id: number;
     name: string;
     quantity: number;
     price: number;
 }
 
-export interface cartActionGeneral {
-    type: string;
-}
-
-export interface IloadCart {
+export interface ILoadCartProps {
     type: 'LOAD_CART';
-    payload: cartItemsState[];
+    payload: ICartItemsState[];
 }
 
-export interface IincrementCart {
+export interface IincrementCartProps {
     type: 'INCREMENT_CART';
-    payload: cartItemsState;
+    payload: ICartItemsState;
 }
-export interface IdecrementCart {
+export interface IdecrementCartProps {
     type: 'DECREMENT_CART';
-    payload: cartItemsState;
+    payload: ICartItemsState;
 }
 
-export interface IremoveCart {
+export interface IremoveCartProps {
     type: 'REMOVE_CART';
-    payload: cartItemsState;
+    payload: ICartItemsState;
 }
 
-export interface IclearCart {
+export interface IclearCartProps {
     type: 'CLEAR_CART';
 }
 
-export interface iReloadCart {
+export interface IReloadCartProps {
     type: 'RELOAD_CART';
 }
 
-export type cartAction = IincrementCart | IdecrementCart | IremoveCart | IclearCart | iReloadCart | IloadCart
+export type TCartActionProps = IincrementCartProps | IdecrementCartProps | IremoveCartProps | IclearCartProps | IReloadCartProps | ILoadCartProps

@@ -1,17 +1,17 @@
-import { cartAction, cartItemsState } from '../../../types/cartTypes';
+import { TCartActionProps, ICartItemsState } from '../../../types/cartTypes';
 import * as cartConfig from '../../config/cart'
 
-const getTotal = (value: cartItemsState[]) => {
+const getTotal = (value: ICartItemsState[]) => {
     return value.map(x => x.price * x.quantity).reduce((a: number, b:number) => a + b, 0)
 }
 
-const initialState: {data: cartItemsState[], total: number} = {
+const initialState: {data: ICartItemsState[], total: number} = {
     data: [],
     total: 0
 }
 
 
-const cartReducer = (state = initialState, action: cartAction) => {
+const cartReducer = (state = initialState, action: TCartActionProps) => {
     switch (action.type) {
         case cartConfig.INCREMENT_CART:
             const incrementedCartItems = state.data.map(cart_item => {

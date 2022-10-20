@@ -1,6 +1,4 @@
-import { cartItemsState } from "./cartTypes";
-
-export interface listTypes {
+export interface IListProps {
     data: any[];
     rightContent?: Array<{type: 'button' | 'staticText' | 'dynamicText', title: string, onclickFunc: (prop: any) => void}>;
     titleProp: string;

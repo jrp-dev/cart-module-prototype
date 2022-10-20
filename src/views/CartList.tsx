@@ -1,12 +1,12 @@
 import React, {Fragment} from "react";
 import Button from "../components/Button";
 import Text from "../components/Text";
-import { listTypes } from "../types/listTypes";
-import { cartItemsState } from "../types/cartTypes";
+import { IListProps } from "../types/listTypes";
+import { ICartItemsState } from "../types/cartTypes";
 
-export const CartList = (props: listTypes) => {
+export const CartList = (props: IListProps) => {
 
-    const setCartItems = (item: cartItemsState) => {
+    const setCartItems = (item: ICartItemsState) => {
         let newItems = props.data.filter(x => x.id !== item.id)
         console.log({newItems})
         if (props.onRemove) {

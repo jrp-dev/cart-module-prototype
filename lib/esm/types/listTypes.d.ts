@@ -1,6 +1,6 @@
-import { cartItemsState } from "./cartTypes";
+import { ICartItemsState } from "./cartTypes";
 export interface listTypes {
-    data: cartItemsState[];
+    data: ICartItemsState[];
     rightContent?: Array<{
         type: 'button' | 'staticText' | 'dynamicText';
         title: string;

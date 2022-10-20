@@ -1,9 +1,9 @@
 import { Fragment } from "react";
-import { listTypes } from "../../types/listTypes";
+import { IListProps } from "../../types/listTypes";
 import Button from "./Button";
 import Text from "./Text";
 
-export default function List(data: listTypes) {
+export default function List(data: IListProps) {
     return (
         <>
             <ul>

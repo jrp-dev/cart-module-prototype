@@ -1,4 +1,4 @@
-export interface buttonTypes {
+export interface IButtonProps {
     title: string;
     onClickFunc: (event: any) => void;
     param: any;
