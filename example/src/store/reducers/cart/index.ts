@@ -14,29 +14,29 @@ const initialState: {data: cartItemsState[], total: number} = {
 const cartReducer = (state = initialState, action: cartAction) => {
     switch (action.type) {
         case cartConfig.INCREMENT_CART:
-            const incrementData = state.data.map(cart_item => {
+            const incrementedCartItems = state.data.map(cart_item => {
                 if (cart_item.id === action.payload.id) { cart_item.quantity += 1 } return cart_item
             })
             return {
                 ...state,
-                data: incrementData,
-                total: getTotal(incrementData)
+                data: incrementedCartItems,
+                total: getTotal(incrementedCartItems)
             }
         case cartConfig.DECREMENT_CART:
-            const decrementData = state.data.map(cart_item => {
+            const decrementedCartItems = state.data.map(cart_item => {
                 if (cart_item.id === action.payload.id && action.payload.quantity > 1 ) { cart_item.quantity -= 1 } return cart_item
             })
             return {
                 ...state,
-                data: decrementData,
-                total: getTotal(decrementData)
+                data: decrementedCartItems,
+                total: getTotal(decrementedCartItems)
             }
         case cartConfig.REMOVE_CART:
-            const removeData = state.data.filter(cart_item => cart_item.id !== action.payload.id)
+            const filteredCartItems = state.data.filter(cart_item => cart_item.id !== action.payload.id)
             return {
                 ...state,
-                data: removeData,
-                total: getTotal(removeData)
+                data: filteredCartItems,
+                total: getTotal(filteredCartItems)
             }
         case cartConfig.CLEAR_CART:
             return {
