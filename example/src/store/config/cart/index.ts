@@ -1,3 +1,4 @@
+export const LOAD_CART = 'LOAD_CART';
 export const INCREMENT_CART = 'INCREMENT_CART';
 export const DECREMENT_CART = 'DECREMENT_CART';
 export const REMOVE_CART = 'REMOVE_CART';

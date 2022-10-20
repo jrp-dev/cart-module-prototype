@@ -1,15 +1,13 @@
 import { cartAction, cartItemsState } from '../../../types/cartTypes';
 import * as cartConfig from '../../config/cart'
 
-const cart_items = [{id: 1, name: 'Welsh Rabbit', quantity: 1, price: 120.00}, {id: 2, name: 'Rocky Mountain Oysters', quantity: 1, price: 200.00}, {id: 3, name: 'Boston Cream Pie', quantity: 1, price: 300.00}]
-
 const getTotal = (value: cartItemsState[]) => {
     return value.map(x => x.price * x.quantity).reduce((a: number, b:number) => a + b, 0)
 }
 
-const initialState = {
-    data: cart_items,
-    total: getTotal(cart_items)
+const initialState: {data: cartItemsState[], total: number} = {
+    data: [],
+    total: 0
 }
 
 
@@ -46,12 +44,11 @@ const cartReducer = (state = initialState, action: cartAction) => {
                 data: [],
                 total: 0
             }
-        case cartConfig.RELOAD_CART:
-            const reloadData = cart_items.map(cart_item => { return {...cart_item, quantity: 1 }})
+        case cartConfig.LOAD_CART:
             return {
                 ...state,
-                data: reloadData,
-                total: getTotal(reloadData)
+                data: action.payload,
+                total: getTotal(action.payload)
             }
         default:
             return state;

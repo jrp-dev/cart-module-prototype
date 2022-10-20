@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
 import './App.css';
-import CartList from './Presentation/Views/Cart/List/CartList';
+import CartList from './presentation/Views/Cart/List/CartList';
 import { useStore } from './store';
 
 function App() {

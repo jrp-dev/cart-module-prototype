@@ -1,12 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCart, decrementCart, incrementCart, reloadCart, removeCart }  from '../store/actions/cart'
+import { clearCart, decrementCart, loadCart, incrementCart, reloadCart, removeCart }  from '../store/actions/cart'
 import { cartItemsState } from '../types/cartTypes';
 
 export default function useCartListViewModel() {
 
-    const useCartSelector = useSelector((state: any) => state.cart.data);
-    const useTotalSelector = useSelector((state: any) => state.cart.total);
+    const cartItems = useSelector((state: any) => state.cart.data);
+    const total = useSelector((state: any) => state.cart.total);
     const dispatch = useDispatch();
+
+    const load = (item: cartItemsState[]) => {
+        dispatch(loadCart(item))
+    }
 
     const increment = (item: cartItemsState) => {
         dispatch(incrementCart(item))
@@ -28,8 +32,9 @@ export default function useCartListViewModel() {
         dispatch(reloadCart())
     }
     return {
-        useCartSelector,
-        useTotalSelector,
+        cartItems,
+        load,
+        total,
         increment,
         decrement,
         remove,

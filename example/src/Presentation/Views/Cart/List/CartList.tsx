@@ -1,15 +1,24 @@
-import Button from '../../../components/Button';
+import { useEffect } from 'react';
 import CartComponent from 'srn-cart-prototype';
 import useCartListViewModel from '../../../../model/useCartListViewModel';
+import Button from '../../../components/Button';
 
 export default function CartList() {
-    const {  useCartSelector, useTotalSelector, increment, decrement, remove, clear, reload } = useCartListViewModel();
+    const { cartItems, total, increment, decrement, remove, clear, reload, load } = useCartListViewModel();
+
+    const loadCart = () => {
+        load([{id: 1, name: 'Welsh Rabbit', quantity: 1, price: 120.00}, {id: 2, name: 'Rocky Mountain Oysters', quantity: 1, price: 200.00}, {id: 3, name: 'Boston Cream Pie', quantity: 1, price: 300.00}])
+    }
+
+    useEffect(() => {
+        loadCart()
+    }, [])
 
     return (
         <div>
             <h3>Cart Items</h3>
             <CartComponent
-                data={useCartSelector}
+                data={cartItems}
                 keyProp="id"
                 titleProp="name"
                 rightContent={
@@ -18,12 +27,12 @@ export default function CartList() {
                         {type: 'button', title: '-', onclickFunc: decrement},
                         {type: 'dynamicText', title: 'quantity', onclickFunc: () => null},
                         {type: 'button', title: '+', onclickFunc: increment},
-                        {type: 'button', title: 'remove', onclickFunc: remove},
+                        {type: 'button', title: 'x', onclickFunc: remove},
                     ]
                 }
             />
-            <p><strong>Total:</strong> ₱ {useTotalSelector}</p>
-            <Button title="Reload Cart" onClickFunc={() => reload()} param={null}/>
+            <p><strong>Total:</strong> ₱ {total}</p>
+            <Button title="Reload Cart" onClickFunc={() => loadCart()} param={null}/>
             <Button title="Clear All" onClickFunc={() => clear()} param={null}/>
         </div>        
     )

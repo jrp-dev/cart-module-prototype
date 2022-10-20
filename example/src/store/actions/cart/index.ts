@@ -1,6 +1,13 @@
 import { cartItemsState } from '../../../types/cartTypes';
 import * as cartConfig from '../../config/cart';
 
+export const loadCart = (payload: cartItemsState[]) => {
+  return {
+    type: cartConfig.LOAD_CART,
+    payload
+  };
+};
+
 export const incrementCart = (payload: cartItemsState) => {
   return {
     type: cartConfig.INCREMENT_CART,

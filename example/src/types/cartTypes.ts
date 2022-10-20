@@ -9,6 +9,11 @@ export interface cartActionGeneral {
     type: string;
 }
 
+export interface IloadCart {
+    type: 'LOAD_CART';
+    payload: cartItemsState[];
+}
+
 export interface IincrementCart {
     type: 'INCREMENT_CART';
     payload: cartItemsState;
@@ -31,4 +36,4 @@ export interface iReloadCart {
     type: 'RELOAD_CART';
 }
 
-export type cartAction = IincrementCart | IdecrementCart | IremoveCart | IclearCart | iReloadCart
+export type cartAction = IincrementCart | IdecrementCart | IremoveCart | IclearCart | iReloadCart | IloadCart
