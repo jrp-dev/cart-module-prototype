@@ -1,11 +1,16 @@
+import { Provider } from 'react-redux';
 import './App.css';
 import CartList from './Presentation/Views/Cart/List/CartList';
+import { useStore } from './store';
 
 function App() {
-  return (
-    <div className="App">
-      <CartList />
-    </div>
+  const { store } : any = useStore()
+  return (    
+    <Provider store={store}>
+      <div className="App">
+        <CartList />
+      </div>
+    </Provider>
   );
 }
 

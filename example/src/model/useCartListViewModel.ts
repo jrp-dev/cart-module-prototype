@@ -1,41 +1,39 @@
-import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { decrement, increment, remove, selectCart, clear, cartTotal, update } from '../features/cart/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearCart, decrementCart, incrementCart, reloadCart, removeCart }  from '../store/actions/cart'
 import { cartItemsState } from '../types/cartTypes';
 
 export default function useCartListViewModel() {
 
-    const useCartItemsSelector = useAppSelector(selectCart);
-    const useGetTotal = useAppSelector(cartTotal);
-    const dispatch = useAppDispatch();
+    const useCartSelector = useSelector((state: any) => state.cart.data);
+    const useTotalSelector = useSelector((state: any) => state.cart.total);
+    const dispatch = useDispatch();
 
-    const incrementCart = (item: cartItemsState) => {
-        dispatch(increment(item))
+    const increment = (item: cartItemsState) => {
+        dispatch(incrementCart(item))
     }
 
-    const decrementCart = (item: cartItemsState) => {
-        dispatch(decrement(item))
+    const decrement = (item: cartItemsState) => {
+        dispatch(decrementCart(item))
+    }
+    
+    const remove = (item: cartItemsState) => {
+        dispatch(removeCart(item))
+    }
+    
+    const clear = () => {
+        dispatch(clearCart())
     }
 
-    const removeCart = (item: cartItemsState) => {
-        dispatch(remove(item))
+    const reload = () => {
+        dispatch(reloadCart())
     }
-
-    const clearCart = () => {
-        dispatch(clear())
-    }
-
-    const updateCart = (data: cartItemsState[]) => {
-        dispatch(update(data))
-    }
-
     return {
-        useCartItemsSelector,
-        useGetTotal,
-        dispatch,
-        decrementCart,
-        incrementCart,
-        removeCart,
-        clearCart,
-        updateCart
+        useCartSelector,
+        useTotalSelector,
+        increment,
+        decrement,
+        remove,
+        clear,
+        reload
     }
 }

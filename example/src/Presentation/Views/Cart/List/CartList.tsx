@@ -1,38 +1,30 @@
-import { useEffect } from 'react';
-import useViewModel from '../../../../model/useCartListViewModel'
-import { getCartAsync } from '../../../../features/cart/cartSlice';
 import Button from '../../../components/Button';
 import CartComponent from 'srn-cart-prototype';
+import useCartListViewModel from '../../../../model/useCartListViewModel';
 
 export default function CartList() {
-    const { useCartItemsSelector, dispatch, incrementCart, decrementCart, removeCart, clearCart, useGetTotal, updateCart } = useViewModel();
-
-    useEffect(() => {
-        dispatch(getCartAsync())
-    }, [])
+    const {  useCartSelector, useTotalSelector, increment, decrement, remove, clear, reload } = useCartListViewModel();
 
     return (
         <div>
             <h3>Cart Items</h3>
             <CartComponent
-                data={useCartItemsSelector}
+                data={useCartSelector}
                 keyProp="id"
                 titleProp="name"
                 rightContent={
                     [
                         {type: 'dynamicText', title: 'price', onclickFunc: () => null},
-                        {type: 'button', title: '-', onclickFunc: decrementCart},
+                        {type: 'button', title: '-', onclickFunc: decrement},
                         {type: 'dynamicText', title: 'quantity', onclickFunc: () => null},
-                        {type: 'button', title: '+', onclickFunc: incrementCart},
-                        // {type: 'button', title: 'x', onclickFunc: removeCart},
+                        {type: 'button', title: '+', onclickFunc: increment},
+                        {type: 'button', title: 'remove', onclickFunc: remove},
                     ]
                 }
-                showRemoveButton={true}
-                onRemove={updateCart}
             />
-            <p><strong>Total:</strong> ₱ {useGetTotal}</p>
-            <Button title="Reload Cart" onClickFunc={() => dispatch(getCartAsync())} param={null}/>
-            <Button title="Clear All" onClickFunc={() => clearCart()} param={null}/>
-        </div>
+            <p><strong>Total:</strong> ₱ {useTotalSelector}</p>
+            <Button title="Reload Cart" onClickFunc={() => reload()} param={null}/>
+            <Button title="Clear All" onClickFunc={() => clear()} param={null}/>
+        </div>        
     )
 }
