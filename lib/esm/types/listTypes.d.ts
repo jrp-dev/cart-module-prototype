@@ -1,5 +1,5 @@
 import { ICartItemsState } from "./cartTypes";
-export interface listTypes {
+export interface IListProps {
     data: ICartItemsState[];
     rightContent?: Array<{
         type: 'button' | 'staticText' | 'dynamicText';

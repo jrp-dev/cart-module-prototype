@@ -1,4 +1,4 @@
 /// <reference types="react" />
-import { listTypes } from "../types/listTypes";
-export declare const CartList: (props: listTypes) => JSX.Element;
+import { IListProps } from "../types/listTypes";
+export declare const CartList: (props: IListProps) => JSX.Element;
 export default CartList;

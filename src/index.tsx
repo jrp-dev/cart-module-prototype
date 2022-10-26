@@ -1,9 +1,9 @@
 import React from "react";
-import { listTypes } from "./types/listTypes";
+import { IListProps } from "./types/listTypes";
 import CartList from "./views/CartList";
 import "./index.css";
 
-const CartComponent = (props: listTypes): JSX.Element => {
+const CartComponent = (props: IListProps): JSX.Element => {
   return (
     <div className="srn-miniapp-cart-main-container">
       <CartList
