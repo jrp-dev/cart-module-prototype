@@ -1,27 +1,12 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, { Fragment } from "react";
 import Button from "../components/Button";
 import Text from "../components/Text";
+import useCartListViewModel from "../model/useCartListViewModel";
 import { IListProps } from "../types/listTypes";
-import { ICartItemsState } from "../types/cartTypes";
 
 export const CartList = (props: IListProps) => {
 
-    const [total, setTotal] = useState<number>(0)
-
-    useEffect(() => {
-        let newTotal = props.data.map(x => x.price * x.quantity).reduce((a: number, b:number) => a + b, 0)
-        setTotal(newTotal)
-        if (props.onTotalChange) {
-            props.onTotalChange(newTotal)
-        }
-    }, [props.data])
-
-    const setCartItems = (item: ICartItemsState) => {
-        let newItems = props.data.filter(x => x.id !== item.id)
-        if (props.onRemove) {
-            props.onRemove(newItems)
-        }
-    }
+    const { removeCartItem, total } = useCartListViewModel(props)
 
     return (
         <div className='srn-miniapp-cart-container'>
@@ -35,7 +20,7 @@ export const CartList = (props: IListProps) => {
                                     <Fragment key={i}>
                                         {
                                             content.type === 'button' ?
-                                            <Button key={i} title={content.title} onClickFunc={content.onclickFunc} param={item} /> :
+                                            <Button title={content.title} onClickFunc={content.onclickFunc} param={item} /> :
                                             content.type === 'staticText' ?
                                             <Text data={content.title} /> :
                                             content.type === 'dynamicText' ?
@@ -46,7 +31,7 @@ export const CartList = (props: IListProps) => {
                             }
                             {
                                 props.showRemoveButton &&
-                                <button onClick={() => setCartItems(item)} className='srn-miniapp-cart-btn srn-miniapp-cart-remove-btn'>x</button>
+                                <Button title="x" onClickFunc={removeCartItem} param={item} className='srn-miniapp-cart-remove-btn' />
                             }
                         </div>
                     </li>

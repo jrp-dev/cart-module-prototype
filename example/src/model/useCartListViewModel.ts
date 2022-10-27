@@ -8,8 +8,8 @@ export default function useCartListViewModel() {
     const total = useSelector((state: any) => state.cart.total);
     const dispatch = useDispatch();
 
-    const load = (item: ICartItemsState[]) => {
-        dispatch(loadCart(item))
+    const load = (items: ICartItemsState[]) => {
+        dispatch(loadCart(items))
     }
 
     const increment = (item: ICartItemsState) => {
@@ -32,9 +32,10 @@ export default function useCartListViewModel() {
         dispatch(reloadCart())
     }
 
-    const update = (total: number) => {
+    const setTotal = (total: number) => {
         dispatch(updateTotal(total))
     }
+
     return {
         cartItems,
         load,
@@ -44,6 +45,6 @@ export default function useCartListViewModel() {
         remove,
         clear,
         reload,
-        update
+        setTotal
     }
 }
