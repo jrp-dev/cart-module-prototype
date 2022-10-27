@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCart, decrementCart, loadCart, incrementCart, reloadCart, removeCart }  from '../store/actions/cart'
+import { clearCart, decrementCart, loadCart, incrementCart, reloadCart, removeCart, updateTotal }  from '../store/actions/cart'
 import { ICartItemsState } from '../types/cartTypes';
 
 export default function useCartListViewModel() {
@@ -31,6 +31,11 @@ export default function useCartListViewModel() {
     const reload = () => {
         dispatch(reloadCart())
     }
+
+    const update = (total: number) => {
+        console.log('updatetotal fired', total)
+        dispatch(updateTotal(total))
+    }
     return {
         cartItems,
         load,
@@ -39,6 +44,7 @@ export default function useCartListViewModel() {
         decrement,
         remove,
         clear,
-        reload
+        reload,
+        update
     }
 }

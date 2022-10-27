@@ -47,6 +47,12 @@ Boolean. Show/hide default remove item button.
 #### onRemove (optional)
 Function when clicking the default remove button.
 
+#### showTotal (optional)
+Boolean. Show/hide the display of total
+
+#### onTotalChange (optional)
+Callback function when the total updates
+
 ## Usage/Examples
 
 ### JS
@@ -181,3 +187,27 @@ function App() {
 
 export default App;
 ```
+## Dev Dependencies
+- React
+- React-dom
+- Node version: 14.17.4
+
+## Changelogs
+
+- 1.0.12
+  - Added showTotal & onTotalChange property
+  - Added total display at the bottom
+- 1.0.11 - Updated interfaces and types naming
+- 1.0.10 - Updated component screenshot in documentation 
+- 1.0.9
+  - Added default styling
+  - Added default remove button
+- 1.0.8 - Updated component screenshot in documentation
+- 1.0.7 - Updated usage example in documentation
+- 1.0.6 - Added usage example in documentation
+- 1.0.5 - Updated folder structure and custom hooks naming
+- 1.0.4 - Added GIT repository link
+- 1.0.3 - Added data property in documentation
+- 1.0.2 - Added documentation
+- 1.0.1 - Added rightContent props for adding dynamic content at the right section of cart items
+- 1.0.0 - Initialized Cart Component

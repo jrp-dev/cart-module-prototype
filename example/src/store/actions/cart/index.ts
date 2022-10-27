@@ -40,3 +40,10 @@ export const reloadCart = () => {
     type: cartConfig.RELOAD_CART
   };
 };
+
+export const updateTotal = (payload: number) => {
+  return {
+    type: cartConfig.UPDATE_TOTAL,
+    payload
+  };
+};

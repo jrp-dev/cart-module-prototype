@@ -59,3 +59,14 @@
 .srn-miniapp-cart-btn:hover {
   background-color: #f0f0f0;
 }
+
+.srn-miniapp-cart-total-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-top: 1px solid #ededed;
+}
+.srn-miniapp-cart-total-label, .srn-miniapp-cart-total-value {
+  font-size: 12px;
+}

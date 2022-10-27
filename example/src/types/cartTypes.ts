@@ -32,4 +32,9 @@ export interface IReloadCartProps {
     type: 'RELOAD_CART';
 }
 
-export type TCartActionProps = IincrementCartProps | IdecrementCartProps | IremoveCartProps | IclearCartProps | IReloadCartProps | ILoadCartProps
+export interface IUpdateTotalProps {
+    type: 'UPDATE_TOTAL';
+    payload: number;
+}
+
+export type TCartActionProps = IincrementCartProps | IdecrementCartProps | IremoveCartProps | IclearCartProps | IReloadCartProps | ILoadCartProps | IUpdateTotalProps

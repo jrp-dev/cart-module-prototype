@@ -19,8 +19,8 @@ const cartReducer = (state = initialState, action: TCartActionProps) => {
             })
             return {
                 ...state,
-                data: incrementedCartItems,
-                total: getTotal(incrementedCartItems)
+                data: incrementedCartItems
+                // total: getTotal(incrementedCartItems)
             }
         case cartConfig.DECREMENT_CART:
             const decrementedCartItems = state.data.map(cart_item => {
@@ -28,15 +28,15 @@ const cartReducer = (state = initialState, action: TCartActionProps) => {
             })
             return {
                 ...state,
-                data: decrementedCartItems,
-                total: getTotal(decrementedCartItems)
+                data: decrementedCartItems
+                // total: getTotal(decrementedCartItems)
             }
         case cartConfig.REMOVE_CART:
             const filteredCartItems = state.data.filter(cart_item => cart_item.id !== action.payload.id)
             return {
                 ...state,
-                data: filteredCartItems,
-                total: getTotal(filteredCartItems)
+                data: filteredCartItems
+                // total: getTotal(filteredCartItems)
             }
         case cartConfig.CLEAR_CART:
             return {
@@ -47,8 +47,13 @@ const cartReducer = (state = initialState, action: TCartActionProps) => {
         case cartConfig.LOAD_CART:
             return {
                 ...state,
-                data: action.payload,
-                total: getTotal(action.payload)
+                data: action.payload
+                // total: getTotal(action.payload)
+            }
+        case cartConfig.UPDATE_TOTAL:
+            return {
+                ...state,
+                total: action.payload
             }
         default:
             return state;

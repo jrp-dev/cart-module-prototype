@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import Button from "../components/Button";
 import Text from "../components/Text";
 import { IListProps } from "../types/listTypes";
@@ -6,13 +6,21 @@ import { ICartItemsState } from "../types/cartTypes";
 
 export const CartList = (props: IListProps) => {
 
+    const [total, setTotal] = useState<number>(0)
+
+    useEffect(() => {
+        let newTotal = props.data.map(x => x.price * x.quantity).reduce((a: number, b:number) => a + b, 0)
+        setTotal(newTotal)
+        if (props.onTotalChange) {
+            props.onTotalChange(newTotal)
+        }
+    }, [props.data])
+
     const setCartItems = (item: ICartItemsState) => {
         let newItems = props.data.filter(x => x.id !== item.id)
-        console.log({newItems})
         if (props.onRemove) {
             props.onRemove(newItems)
         }
-
     }
 
     return (
@@ -44,6 +52,13 @@ export const CartList = (props: IListProps) => {
                     </li>
                 ))}
             </ul>
+            {
+                props.showTotal &&
+                <div className="srn-miniapp-cart-total-container">
+                    <p className="srn-miniapp-cart-total-label">Total</p>
+                    <p className="srn-miniapp-cart-total-value">{total}</p>
+                </div>
+            }
         </div>
     )
 }

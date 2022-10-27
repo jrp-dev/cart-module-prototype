@@ -10,4 +10,6 @@ export interface IListProps {
     keyProp: string;
     onRemove?: (prop: any) => void;
     showRemoveButton?: boolean;
+    onTotalChange?: (prop: number) => void;
+    showTotal?: boolean;
 }
