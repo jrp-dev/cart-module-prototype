@@ -194,6 +194,7 @@ export default App;
 
 ## Changelogs
 
+- 1.0.13 - Applied MVVM to components
 - 1.0.12
   - Added showTotal & onTotalChange property
   - Added total display at the bottom
