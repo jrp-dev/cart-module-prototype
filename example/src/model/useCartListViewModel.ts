@@ -33,7 +33,6 @@ export default function useCartListViewModel() {
     }
 
     const update = (total: number) => {
-        console.log('updatetotal fired', total)
         dispatch(updateTotal(total))
     }
     return {
